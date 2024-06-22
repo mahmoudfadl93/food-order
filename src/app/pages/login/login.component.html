@@ -1,0 +1,18 @@
+<div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+    <p-floatLabel>
+      <input id="email" type="email" pInputText formControlName="email" />
+      <label for="email">Email</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <input id="phone" type="number" pInputText formControlName="phone" />
+      <label for="phone">Phone</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <p-password id="password" formControlName="password" [feedback]="false" />
+      <label for="password">Password</label>
+    </p-floatLabel>
+  </form>
+</div>
