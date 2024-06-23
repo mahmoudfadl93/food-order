@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PasswordModule,FloatLabelModule,ReactiveFormsModule],
+  imports: [PasswordModule,FloatLabelModule,ReactiveFormsModule,ButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

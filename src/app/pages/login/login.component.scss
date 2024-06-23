@@ -1,0 +1,42 @@
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+
+  &__container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 35rem;
+
+    &-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block-end: 1rem;
+
+      img {
+        width: 100px;
+        border-radius: 10px;
+      }
+    }
+
+    &-form {
+      .input-control{
+        &:not(:last-child){
+          margin-block-end: 1.5rem;
+        }
+      }
+    }
+
+    &-footer {
+      margin-block-start: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

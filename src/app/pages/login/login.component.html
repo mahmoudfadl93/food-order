@@ -1,18 +1,39 @@
-<div>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="login">
+  <div class="login__container">
+    <div class="login__container-image">
+      <img src="image/logo.png" alt="Avatar" class="avatar" />
+    </div>
+    <div class="login__container-form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-control">
+          <p-floatLabel>
+            <input id="email" type="email" pInputText formControlName="email" />
+            <label for="email">Email</label>
+          </p-floatLabel>
+        </div>
+        <div class="input-control">
+          <p-floatLabel>
+            <input id="phone" type="number" pInputText formControlName="phone" />
+            <label for="phone">Phone</label>
+          </p-floatLabel>
+        </div>
+        <div class="input-control">
+          <p-floatLabel>
+            <p-password
+              id="password"
+              formControlName="password"
+              [feedback]="false"
+            />
+            <label for="password">Password</label>
+          </p-floatLabel>
+        </div>
 
 
-    <p-floatLabel>
-      <input id="email" type="email" pInputText formControlName="email" />
-      <label for="email">Email</label>
-    </p-floatLabel>
-    <p-floatLabel>
-      <input id="phone" type="number" pInputText formControlName="phone" />
-      <label for="phone">Phone</label>
-    </p-floatLabel>
-    <p-floatLabel>
-      <p-password id="password" formControlName="password" [feedback]="false" />
-      <label for="password">Password</label>
-    </p-floatLabel>
-  </form>
+
+      </form>
+    </div>
+    <div class="login__container-footer">
+      <p-button label="Submit" />
+    </div>
+  </div>
 </div>
