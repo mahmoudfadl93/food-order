@@ -1,10 +1,12 @@
+
+@import 'variables/color';
 .login {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aliceblue;
+  background-color: $green-200;
 
   &__container {
     background-color: #fff;
@@ -16,7 +18,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-block-end: 1rem;
+      margin-block-end: 2rem;
 
       img {
         width: 100px;

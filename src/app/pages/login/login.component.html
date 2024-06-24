@@ -5,31 +5,42 @@
     </div>
     <div class="login__container-form">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="input-control">
-          <p-floatLabel>
-            <input id="email" type="email" pInputText formControlName="email" />
+        <div class="input-control display-column">
+          <div class="input-control__label">
             <label for="email">Email</label>
-          </p-floatLabel>
+          </div>
+          <div class="input-control__wrapper">
+            <input id="email" type="email" pInputText formControlName="email" />
+          </div>
+          <div class="input-control__errors"></div>
         </div>
-        <div class="input-control">
-          <p-floatLabel>
-            <input id="phone" type="number" pInputText formControlName="phone" />
+        <div class="input-control display-column">
+          <div class="input-control__label">
             <label for="phone">Phone</label>
-          </p-floatLabel>
+          </div>
+          <div class="input-control__wrapper">
+            <input
+              id="phone"
+              type="text"
+              pInputText
+              formControlName="phone"
+            />
+          </div>
+          <div class="input-control__errors"></div>
         </div>
-        <div class="input-control">
-          <p-floatLabel>
+        <div class="input-control display-column">
+          <div class="input-control__label">
+            <label for="password">Password</label>
+          </div>
+          <div class="input-control__wrapper">
             <p-password
               id="password"
               formControlName="password"
               [feedback]="false"
             />
-            <label for="password">Password</label>
-          </p-floatLabel>
+          </div>
+          <div class="input-control__errors"></div>
         </div>
-
-
-
       </form>
     </div>
     <div class="login__container-footer">
