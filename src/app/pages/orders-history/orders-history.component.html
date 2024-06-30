@@ -1,1 +1,28 @@
-<p>orders-history works!</p>
+<div class="page-container">
+  <div
+    class="page-container__header d-flex gap-2 justify-content-between align-items-center"
+  >
+    <h2>Orders</h2>
+    <a routerLink="/create-menu" class="p-button font-bold"> Create Order </a>
+  </div>
+  <div class="page-container__body">
+    <p-card>
+      <p-table [value]="orders" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>date</th>
+            <th>total price</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-menu>
+          <tr>
+            <td>{{ menu.name }}</td>
+            <td>{{ menu.data | date }}</td>
+            <td>{{ menu.price }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
