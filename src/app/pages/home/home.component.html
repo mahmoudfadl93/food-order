@@ -1,1 +1,56 @@
-<p>home works!</p>
+<div class="home-container">
+  <p-card
+    header="Menus"
+    [style]="{ width: '360px' }"
+  >
+    <ng-template pTemplate="header">
+      <img
+        alt="menus"
+        src="image/menus.png"
+        width="200"
+        height="150"
+      />
+    </ng-template>
+    <p>
+      here the Menus
+    </p>
+    <ng-template pTemplate="footer">
+      <div class="d-flex gap-3 mt-1 justify-content-center">
+        <a routerLink="/menus" class="p-button font-bold p-button-secondary">
+          List
+      </a>
+      <a routerLink="/create-menu" class="p-button font-bold">
+        Create
+    </a>
+
+      </div>
+    </ng-template>
+  </p-card>
+  <p-card
+    header="Orders"
+    [style]="{ width: '360px' }"
+  >
+    <ng-template pTemplate="header">
+      <img
+        alt="Card"
+        src="image/orders.svg"
+        width="200"
+        height="150"
+      />
+    </ng-template>
+    <p>
+      here the Orders
+    </p>
+    <ng-template pTemplate="footer">
+      <div class="d-flex gap-3 mt-1 justify-content-center">
+        <a routerLink="/orders" class="p-button font-bold p-button-secondary">
+          List
+      </a>
+      <a routerLink="/create-order" class="p-button font-bold">
+        Create
+    </a>
+
+      </div>
+    </ng-template>
+  </p-card>
+</div>

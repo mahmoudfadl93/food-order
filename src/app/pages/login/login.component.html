@@ -4,7 +4,7 @@
       <img src="image/logo.png" alt="Avatar" class="avatar" />
     </div>
     <div class="login__container-form">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" >
         <div class="input-control display-column">
           <div class="input-control__label">
             <label for="email">Email</label>
@@ -37,6 +37,7 @@
               id="password"
               formControlName="password"
               [feedback]="false"
+              [toggleMask]="true"
             />
           </div>
           <div class="input-control__errors"></div>
@@ -44,7 +45,8 @@
       </form>
     </div>
     <div class="login__container-footer">
-      <p-button label="Submit" />
+
+      <p-button (onClick)="onSubmit()"  [type]="'submit'" label="Submit" />
     </div>
   </div>
 </div>

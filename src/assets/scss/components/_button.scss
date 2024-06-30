@@ -1,4 +1,12 @@
 .p-button{
   background-color: $green-900;
   border-color: $green-900;
+  border-radius: 30px;
+  color: #ffffff;
+  text-decoration: none;
+}
+.p-button.p-button-secondary, .p-button-group.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #64748b;
+  border: 1px solid #64748b;
 }

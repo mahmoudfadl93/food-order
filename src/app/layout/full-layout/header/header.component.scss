@@ -1,0 +1,33 @@
+.navbar-brand {
+  img {
+    border-radius: 10px;
+  }
+
+}
+
+.profile-icon {
+  position: relative;
+
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: auto;
+      border-radius: 50%;
+    }
+  }
+
+  .dropdown-menu {
+    li{
+      cursor: pointer;
+      a{
+        cursor: pointer;
+        position: relative;
+        z-index: 999;
+      }
+    }
+  }
+}

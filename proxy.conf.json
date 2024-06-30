@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://bedairwork-001-site1.gtempurl.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
