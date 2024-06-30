@@ -27,6 +27,14 @@
       display: inline-block;
     }
   }
+  p-inputnumber{
+    width: 100%;
+    display: inline-block;
+    .p-inputnumber{
+      width: 100%;
+      display: inline-block;
+    }
+  }
 
   input {
     width: 100%;
@@ -35,7 +43,7 @@
     padding-inline: .5rem;
     font-size: 1em;
     border-radius: 10px;
-    border-color: #33333321;
+    border-color: rgb(51 51 51 / 50%);
     &:focus-visible {
       outline: -webkit-focus-ring-color auto 0px;
   }

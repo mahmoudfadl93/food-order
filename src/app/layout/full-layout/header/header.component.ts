@@ -15,7 +15,7 @@ export class HeaderComponent {
   router =  inject(Router)
   localStoragesData = localStorages();
   constructor() {
-    console.log("🚀 ~ HeaderComponent ~ routers:", this.router)
+
 
   }
   onLogout() {
