@@ -1,0 +1,28 @@
+<div class="dialog-container">
+  <form [formGroup]="form">
+    <div class="dialog-form mb-5">
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="price">Menus</label>
+        </div>
+        <div class="input-control__wrapper">
+          <p-dropdown
+            [options]="menus"
+            formControlName="menu"
+            optionLabel="name"
+            placeholder="Select a Menu"
+            appendTo="body"
+          />
+        </div>
+        <div class="input-control__errors"></div>
+      </div>
+    </div>
+
+    <div class="dialog-form-action mt-5">
+      <div class="my-3 d-flex align-items-center justify-content-between">
+        <p-button label="Cancel" severity="secondary" [outlined]="true" />
+        <p-button (onClick)="onSubmit()" [type]="'submit'" label="Submit" />
+      </div>
+    </div>
+  </form>
+</div>

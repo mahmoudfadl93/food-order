@@ -3,7 +3,8 @@
     class="page-container__header d-flex gap-2 justify-content-between align-items-center"
   >
     <h2>Orders</h2>
-    <a routerLink="/create-order" class="p-button font-bold"> Create Order </a>
+
+    <p-button (onClick)="show()"  [type]="'button'" label="Create Order" />
   </div>
   <div class="page-container__body">
     <p-card>
@@ -11,8 +12,8 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Name</th>
-            <th>date</th>
-            <th>total price</th>
+            <th>Date</th>
+            <th>Total Price</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-menu>

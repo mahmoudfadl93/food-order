@@ -10,6 +10,16 @@
   background: #64748b;
   border: 1px solid #64748b;
 }
+.p-button.p-button-secondary.p-button-outlined, .p-button-group.p-button-secondary > .p-button.p-button-outlined, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined {
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid;
+}
+.p-button.p-button-secondary.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover {
+  background: rgba(100, 116, 139, 0.04);
+  color: #64748b;
+  border: 1px solid;
+}
 
 .p-button.p-button-danger, .p-button-group.p-button-danger > .p-button, .p-splitbutton.p-button-danger > .p-button {
   color: #ffffff;

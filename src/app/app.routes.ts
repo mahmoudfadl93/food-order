@@ -37,10 +37,10 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'create-order',
+        path: 'order',
         loadComponent: () =>
-          import('./pages/create-order/create-order.component').then(
-            (m) => m.CreateOrderComponent
+          import('./pages/order/order.component').then(
+            (m) => m.OrderComponent
           ),
       },
     ],

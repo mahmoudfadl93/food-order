@@ -5,12 +5,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CoreModule } from './core/core.module';
 import { Observable } from 'rxjs';
 import { LoaderService } from './core/services/loader/loader.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CoreModule,RouterOutlet, ProgressSpinnerModule],
-  providers:[],
+  providers:[DialogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
