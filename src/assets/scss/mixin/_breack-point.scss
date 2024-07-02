@@ -1,0 +1,29 @@
+// Media Query
+
+// For Small Devices (Mobile Devices)
+@mixin sm {
+  @media only screen and (min-width:320px) {
+    @content;
+  }
+}
+
+// For Medium Devices (iPads)
+@mixin md {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+// For Large Devices (Tablets, Small screens)
+@mixin lg {
+  @media only screen and (min-width: 960px) {
+    @content;
+  }
+}
+
+// Extra Large Devices (Desktops, laptops)
+@mixin xl {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}

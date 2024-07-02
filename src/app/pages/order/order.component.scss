@@ -1,0 +1,44 @@
+@import 'mixin/mixin.scss';
+
+.container-order-cart {
+  .list-orders {
+    width: 100%;
+    ::ng-deep .p-card-content{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @include lg {
+      flex: 2;
+    }
+
+    .order-item {
+      padding: 1rem;
+      box-shadow: 1px 1px 10px 2px #33333321;
+      &__info{
+        width: 100%;
+        margin-block-start: 1rem;
+
+        @include lg {
+          flex: 1;
+        }
+      }
+      &__quantity{
+        width: 100%;
+
+        @include lg {
+          flex: 2;
+        }
+      }
+    }
+  }
+
+  .cart-data {
+    width: 100%;
+
+    @include lg {
+      flex: 1;
+    }
+  }
+}

@@ -37,7 +37,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'order',
+        path: 'order/:id',
         loadComponent: () =>
           import('./pages/order/order.component').then(
             (m) => m.OrderComponent
