@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import {  Router, RouterModule } from '@angular/router';
-import { ILogin } from '../../../models/login.model';
 import { localStorages } from '../../../core/helper/localStorage.fun';
+import { IUser } from '../../../models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ import { localStorages } from '../../../core/helper/localStorage.fun';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  user: ILogin = JSON.parse(localStorages().getItem('currentUser'));
+  user: IUser = JSON.parse(localStorages().getItem('currentUser'));
   router =  inject(Router)
   localStoragesData = localStorages();
   constructor() {

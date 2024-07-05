@@ -25,8 +25,15 @@ export const routes: Routes = [
       {
         path: 'create-menu',
         loadComponent: () =>
-          import('./pages/create-menu/create-menu.component').then(
-            (m) => m.CreateMenuComponent
+          import('./pages/menu-create-edit/menu-create-edit.component').then(
+            (m) => m.MenuCreateEditComponent
+          ),
+      },
+      {
+        path: 'edit-menu/:id/:name',
+        loadComponent: () =>
+          import('./pages/menu-create-edit/menu-create-edit.component').then(
+            (m) => m.MenuCreateEditComponent
           ),
       },
       {

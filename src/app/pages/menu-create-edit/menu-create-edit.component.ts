@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from 'express';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-create-menu',
+  selector: 'app-menu-create-edit',
   standalone: true,
   imports: [CardModule,ButtonModule, ReactiveFormsModule,InputTextModule ,InputNumberModule ],
-  templateUrl: './create-menu.component.html',
-  styleUrl: './create-menu.component.scss',
+  templateUrl: './menu-create-edit.component.html',
+  styleUrl: './menu-create-edit.component.scss'
 })
-export class CreateMenuComponent implements OnInit {
+export class MenuCreateEditComponent implements OnInit {
+
+
+  router = inject(Router)
+  activatedRoute = inject(ActivatedRoute)
   form!: FormGroup;
 
   ngOnInit(): void {
+
     this.form = new FormGroup({
       id: new FormControl(0, [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -29,6 +30,7 @@ export class CreateMenuComponent implements OnInit {
     });
     this.addItem()
   }
+
 
   addItem() {
     const item = new FormGroup({

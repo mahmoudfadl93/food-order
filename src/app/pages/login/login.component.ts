@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     // Handle form submission here
     if (this.loginForm.invalid) return;
     this._AuthService.auth(this.loginForm.value).subscribe({

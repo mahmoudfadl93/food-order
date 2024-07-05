@@ -7,20 +7,23 @@
   </div>
   <div class="page-container__body">
     <p-card>
-      <p-table [value]="menus" [tableStyle]="{ 'min-width': '50rem' }">
+
+      <p-table [value]="menus()" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
             <th>Name</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-menu>
           <tr>
             <td>{{ menu.name }}</td>
+            <td>{{ menu.timestamp | date }}</td>
             <td>
               <div class="d-flex align-items-center gap-2">
                 <a
-                  routerLink="/create-menu"
+                  [routerLink]="['/edit-menu',menu.id,menu.name]"
                   class="p-button p-button-icon-only"
                 >
                   <span class="pi pi-pen-to-square"> </span>
