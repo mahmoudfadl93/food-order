@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import {
   FormArray,
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
+import { Subscriptions } from '../../shared/utilities/subscription.class';
+import { OrdersService } from '../../services/orders/orders.service';
+import { forkJoin } from 'rxjs';
+import { IItemByUser, IOrderItems } from '../../models/orders.model';
 
 @Component({
   selector: 'app-order',
@@ -28,21 +32,48 @@ import { TableModule } from 'primeng/table';
   styleUrl: './order.component.scss',
 })
 export class OrderComponent implements OnInit {
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  ordersService = inject(OrdersService);
+  id!: number;
+  itemByuser: WritableSignal<IItemByUser> = signal(null!);
+  orderItems: WritableSignal<IOrderItems> = signal(null!);
   menuItems = [];
   form!: FormGroup;
-  cartList=[
+  cartList = [
     {
-      name:'fol',
-      quantity:1,
-      price:30,
-      totalPrice:30,
-    }
-  ]
+      name: 'fol',
+      quantity: 1,
+      price: 30,
+      totalPrice: 30,
+    },
+  ];
+  subscription = new Subscriptions();
+
   ngOnInit(): void {
     this.form = new FormGroup({
       items: new FormArray([]),
     });
     this.addItem();
+    this.subscription.add = this.activatedRoute.params.subscribe((param) => {
+      this.id = +param['id'];
+      if (this.id) {
+        this.loadData();
+      }
+    });
+  }
+
+  loadData() {
+    this.subscription.add = forkJoin({
+      GetOrderItemsByUser: this.ordersService.GetOrderItemsByUser({
+        id: this.id,
+      }),
+      GetOrderItems: this.ordersService.GetOrderItems({ id: this.id }),
+    }).subscribe({
+      next: ({GetOrderItemsByUser,GetOrderItems}) => {
+        this.itemByuser.set(GetOrderItemsByUser)
+      },
+    });
   }
 
   addItem() {
@@ -61,7 +92,7 @@ export class OrderComponent implements OnInit {
   }
 
   Done() {}
-  submit(){}
+  submit() {}
 
   // Helper method to get the 'items' FormArray
   get items() {

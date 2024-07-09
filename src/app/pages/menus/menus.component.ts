@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MenusComponent implements OnInit {
   menusService = inject(MenusService);
+
   menus:WritableSignal<IMenus[]> = signal([]);
   ngOnInit() {
     this.loadData();

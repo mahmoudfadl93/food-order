@@ -3,7 +3,8 @@
 .container-order-cart {
   .list-orders {
     width: 100%;
-    ::ng-deep .p-card-content{
+
+    ::ng-deep .p-card-content {
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -16,7 +17,8 @@
     .order-item {
       padding: 1rem;
       box-shadow: 1px 1px 10px 2px #33333321;
-      &__info{
+
+      &__info {
         width: 100%;
         margin-block-start: 1rem;
 
@@ -24,7 +26,8 @@
           flex: 1;
         }
       }
-      &__quantity{
+
+      &__quantity {
         width: 100%;
 
         @include lg {

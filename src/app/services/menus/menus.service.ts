@@ -7,7 +7,7 @@ import { IUser } from '../../models/user.model';
 
 @Injectable()
 export class MenusService {
-  user: IUser = JSON.parse(localStorages().getItem('currentUser'));
+  private user: IUser = JSON.parse(localStorages().getItem('currentUser'));
   constructor(private http: HttpClient) {}
 
   getMenus(): Observable<IMenus[]> {
@@ -17,7 +17,7 @@ export class MenusService {
   }
 
   getMenuDetails(body: { id: number }): Observable<any> {
-    return this.http.post<any>('api/Menus/GetMenuDetails', {
+    return this.http.post<any>('api/Menus/GetMenuItems', {
       menuId: body.id,
     });
   }

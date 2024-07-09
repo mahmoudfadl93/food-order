@@ -8,19 +8,19 @@
   </div>
   <div class="page-container__body">
     <p-card>
-      <p-table [value]="orders" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table [value]="orders()" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
-            <th>Name</th>
+            <th>Menu Name</th>
             <th>Date</th>
-            <th>Total Price</th>
+            <th>Action</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-menu>
+        <ng-template pTemplate="body" let-order>
           <tr>
-            <td>{{ menu.name }}</td>
-            <td>{{ menu.data | date }}</td>
-            <td>{{ menu.price }}</td>
+            <td>{{ order.menu.name }}</td>
+            <td>{{ order.timestamp | date }}</td>
+            <td></td>
           </tr>
         </ng-template>
       </p-table>
