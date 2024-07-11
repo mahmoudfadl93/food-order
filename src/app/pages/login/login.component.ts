@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { ActivatedRoute,Router } from '@angular/router';
     FloatLabelModule,
     ReactiveFormsModule,
     ButtonModule,
+    CardModule,
   ],
   providers: [AuthService],
   templateUrl: './login.component.html',

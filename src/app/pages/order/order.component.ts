@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -16,6 +22,7 @@ import { Subscriptions } from '../../shared/utilities/subscription.class';
 import { OrdersService } from '../../services/orders/orders.service';
 import { forkJoin } from 'rxjs';
 import { IItemByUser, IOrderItems } from '../../models/orders.model';
+import { MenusService } from '../../services/menus/menus.service';
 
 @Component({
   selector: 'app-order',
@@ -35,10 +42,12 @@ export class OrderComponent implements OnInit {
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
   ordersService = inject(OrdersService);
+  menusService = inject(MenusService);
   id!: number;
   itemByuser: WritableSignal<IItemByUser> = signal(null!);
   orderItems: WritableSignal<IOrderItems> = signal(null!);
-  menuItems = [];
+  calcTotalOrders: WritableSignal<any> = signal([]);
+  menuItems: WritableSignal<any> = signal(null!);
   form!: FormGroup;
   cartList = [
     {
@@ -70,8 +79,10 @@ export class OrderComponent implements OnInit {
       }),
       GetOrderItems: this.ordersService.GetOrderItems({ id: this.id }),
     }).subscribe({
-      next: ({GetOrderItemsByUser,GetOrderItems}) => {
-        this.itemByuser.set(GetOrderItemsByUser)
+      next: ({ GetOrderItemsByUser, GetOrderItems }) => {
+        this.itemByuser.set(GetOrderItemsByUser);
+        this.orderItems.set(GetOrderItems);
+        this.totalOrders();
       },
     });
   }
@@ -93,6 +104,38 @@ export class OrderComponent implements OnInit {
 
   Done() {}
   submit() {}
+
+  existingItems = new Set();
+  totalOrders() {
+    const orders = this.orderItems().OrderFullData.map((data) => data.FullList);
+    for (const order of orders.flat()) {
+      if (this.existingItems.has(order.ItemName)) {
+        const existingItem = this.calcTotalOrders().find(
+          (item: any) => item.ItemName === order.ItemName
+        );
+        existingItem.Quantity += order.Quantity;
+        existingItem.TotalItemPrice =
+          existingItem.Price * existingItem.Quantity;
+      } else {
+        this.existingItems.add(order.ItemName);
+        this.calcTotalOrders.update((values) => {
+          return [
+            ...values,
+            {
+              ItemName: order.ItemName,
+              Price: order.Price,
+              Quantity: order.Quantity,
+              TotalItemPrice: order.Price * order.Quantity,
+            },
+          ];
+        });
+      }
+    }
+    console.log(
+      '🚀 ~ OrderComponent ~ totalOrders ~ this.calcTotalOrders():',
+      this.calcTotalOrders()
+    );
+  }
 
   // Helper method to get the 'items' FormArray
   get items() {

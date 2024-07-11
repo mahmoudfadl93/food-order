@@ -46,7 +46,7 @@
                         </div>
                         <div class="input-control__wrapper">
                           <p-dropdown
-                            [options]="menuItems"
+                            [options]="menuItems()"
                             formControlName="name"
                             optionLabel="name"
                             placeholder="Select a Menu"
@@ -105,19 +105,24 @@
   >
     <div class="list-orders">
       <p-card [header]="'Orders List'">
+        @for (item of orderItems()?.OrderFullData; track item) {
         <div class="order-item">
           <div class="d-flex justify-content-between gap-3">
-            <div class="order-item__info d-flex gap-3">
+            <div class="order-item__info d-flex gap-3 flex-wrap">
               <img
                 src="image/profile.png"
                 alt="profile"
                 width="30"
                 height="30"
               />
-              <p>Person Data</p>
+              <p>{{ item.User }}</p>
+              <div class="w-100 d-flex align-items-center gap-1">
+                <p>Total Price: </p>
+                <p>{{ item.TotalPrice }}</p>
+              </div>
             </div>
             <div class="order-item__quantity">
-              <p-table [value]="cartList">
+              <p-table [value]="item.FullList">
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Name</th>
@@ -128,54 +133,23 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-menu>
                   <tr>
-                    <td>{{ menu.name }}</td>
-                    <td>{{ menu.quantity }}</td>
-                    <td>{{ menu.price }}</td>
-                    <td>{{ menu.totalPrice }}</td>
+                    <td>{{ menu.ItemName }}</td>
+                    <td>{{ menu.Quantity }}</td>
+                    <td>{{ menu.Price }}</td>
+                    <td>{{ menu.TotalItemPrice }}</td>
                   </tr>
                 </ng-template>
               </p-table>
             </div>
           </div>
         </div>
-        <div class="order-item">
-          <div class="d-flex justify-content-between gap-3">
-            <div class="order-item__info d-flex gap-3">
-              <img
-                src="image/profile.png"
-                alt="profile"
-                width="30"
-                height="30"
-              />
-              <p>Person Data</p>
-            </div>
-            <div class="order-item__quantity">
-              <p-table [value]="cartList">
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
-                  </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-menu>
-                  <tr>
-                    <td>{{ menu.name }}</td>
-                    <td>{{ menu.quantity }}</td>
-                    <td>{{ menu.price }}</td>
-                    <td>{{ menu.totalPrice }}</td>
-                  </tr>
-                </ng-template>
-              </p-table>
-            </div>
-          </div>
-        </div>
+
+        }
       </p-card>
     </div>
     <div class="cart-data">
       <p-card [header]="'Total Orders'">
-        <p-table [value]="cartList">
+        <p-table [value]="calcTotalOrders()">
           <ng-template pTemplate="header">
             <tr>
               <th>Name</th>
@@ -186,10 +160,10 @@
           </ng-template>
           <ng-template pTemplate="body" let-menu>
             <tr>
-              <td>{{ menu.name }}</td>
-              <td>{{ menu.quantity }}</td>
-              <td>{{ menu.price }}</td>
-              <td>{{ menu.totalPrice }}</td>
+              <td>{{ menu.ItemName }}</td>
+              <td>{{ menu.Quantity }}</td>
+              <td>{{ menu.Price }}</td>
+              <td>{{ menu.TotalItemPrice }}</td>
             </tr>
           </ng-template>
         </p-table>

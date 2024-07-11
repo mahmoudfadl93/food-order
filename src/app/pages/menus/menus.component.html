@@ -6,8 +6,22 @@
     <a routerLink="/create-menu" class="p-button font-bold"> Create Menu </a>
   </div>
   <div class="page-container__body">
-    <p-card>
+    <!-- <div class="menus-list d-flex align-items-center gap-3">
+      @for (item of menus(); track item) {
+      <p-card header="{{ item.name }}">
+        <ng-template pTemplate="header">
+          <img
+            width="100"
+            height="100"
+            alt="Card"
+            src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
+          />
+        </ng-template>
+      </p-card>
+      }
+    </div> -->
 
+    <p-card>
       <p-table [value]="menus()" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
@@ -23,7 +37,7 @@
             <td>
               <div class="d-flex align-items-center gap-2">
                 <a
-                  [routerLink]="['/edit-menu',menu.id,menu.name]"
+                  [routerLink]="['/edit-menu', menu.id, menu.name]"
                   class="p-button p-button-icon-only"
                 >
                   <span class="pi pi-pen-to-square"> </span>
