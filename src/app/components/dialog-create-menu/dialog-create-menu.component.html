@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+  <div class="main-section">
+    <div class="input-control display-column">
+      <div class="input-control__label">
+        <label for="name">Name</label>
+      </div>
+      <div class="input-control__wrapper">
+        <input
+          pInputText
+          id="name"
+          type="text"
+          pInputText
+          formControlName="name"
+        />
+      </div>
+      <div class="input-control__errors"></div>
+    </div>
+  </div>
+  <div class="add-items my-3 d-flex align-items-center justify-content-end ">
+    <p-button (onClick)="addItem()" [type]="'button'" label="Add Item" />
+  </div>
+
+  <ng-container formArrayName="items">
+    @for (item of items.controls; track item; let i = $index) {
+    <div
+      class="d-flex align-items-center gap-3 item-form-row"
+      [formGroupName]="i"
+    >
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="name">Name</label>
+        </div>
+        <div class="input-control__wrapper">
+          <input
+            pInputText
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+          />
+        </div>
+        <div class="input-control__errors"></div>
+      </div>
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="price">Price</label>
+        </div>
+        <div class="input-control__wrapper">
+          <p-inputNumber
+            formControlName="price"
+            inputId="price"
+            mode="decimal"
+            [min]="0"
+            [max]="100"
+          />
+        </div>
+        <div class="input-control__errors"></div>
+      </div>
+    </div>
+    }
+  </ng-container>
+  <div class="mt-5 d-flex align-items-center justify-content-between">
+    <p-button  label="Back" severity="secondary" [outlined]="true"  />
+    <p-button (onClick)="onSubmit()" [type]="'submit'" label="Submit" />
+  </div>
+</form>

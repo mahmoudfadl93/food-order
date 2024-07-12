@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://bedairwork-001-site1.gtempurl.com",
+    "target": "https://yalla-neftar.azurewebsites.net",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

@@ -1,21 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
-  ReactiveFormsModule,
   FormGroup,
   FormControl,
   Validators,
   FormArray,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { MenusService } from '../../services/menus/menus.service';
+import { Subscriptions } from '../../shared/utilities/subscription.class';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { Subscriptions } from '../../shared/utilities/subscription.class';
-import { MenusService } from '../../services/menus/menus.service';
 
 @Component({
-  selector: 'app-menu-create-edit',
+  selector: 'app-dialog-create-menu',
   standalone: true,
   imports: [
     CardModule,
@@ -24,42 +24,23 @@ import { MenusService } from '../../services/menus/menus.service';
     InputTextModule,
     InputNumberModule,
   ],
-  templateUrl: './menu-create-edit.component.html',
-  styleUrl: './menu-create-edit.component.scss',
+  providers:[MenusService],
+  templateUrl: './dialog-create-menu.component.html',
+  styleUrl: './dialog-create-menu.component.scss',
 })
-export class MenuCreateEditComponent implements OnInit {
-  router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
+export class DialogCreateMenuComponent implements OnInit {
   menusService = inject(MenusService);
-
   subscription = new Subscriptions();
   id!: number;
   name!: string;
   form!: FormGroup;
   ngOnInit(): void {
-    this.subscription.add = this.activatedRoute.params.subscribe((param) => {
-      this.id = +param['id'];
-      this.name = param['name'];
-      if (this.id) {
-        this.loadData();
-      }
-
-    });
     this.form = new FormGroup({
       id: new FormControl(0, [Validators.required]),
       name: new FormControl('', [Validators.required]),
       items: new FormArray([]),
     });
     this.addItem();
-  }
-  loadData() {
-    this.menusService.getMenuDetails({ id: this.id }).subscribe({
-      next: (res) => {
-        this.formControl('id').setValue(this.id);
-        this.formControl('name').setValue(this.name);
-        this.formControl('items').setValue(res);
-      },
-    });
   }
 
   addItem() {

@@ -131,10 +131,6 @@ export class OrderComponent implements OnInit {
         });
       }
     }
-    console.log(
-      '🚀 ~ OrderComponent ~ totalOrders ~ this.calcTotalOrders():',
-      this.calcTotalOrders()
-    );
   }
 
   // Helper method to get the 'items' FormArray

@@ -4,10 +4,12 @@ import { LoaderService } from '../../loader/loader.service';
 import { inject } from '@angular/core';
 
 export const loaderInterceptor: HttpInterceptorFn = (req, next) => {
+  const loaderService = inject(LoaderService);
+
   let service_count: number = 0;
   service_count++; // increment the count for each intercepted http request.
   // show spinner
-  inject(LoaderService).show();
+  loaderService.show();
 
   return next(req).pipe(
     finalize(() => {
@@ -17,7 +19,7 @@ export const loaderInterceptor: HttpInterceptorFn = (req, next) => {
       if (service_count === 0 || service_count < 0) {
         // hide spinner
         setTimeout(() => {
-          inject(LoaderService).hide();
+          // loaderService.hide();
         }, 0);
       }
     })

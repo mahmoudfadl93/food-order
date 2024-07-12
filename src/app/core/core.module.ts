@@ -8,8 +8,7 @@ import { LoaderService } from './services/loader/loader.service';
   declarations: [],
   imports: [CommonModule],
   providers: [
-    LoaderService,
-    { provide: HTTP_INTERCEPTORS, useFactory: loaderInterceptor, multi: true },
+
   ],
   exports:[CommonModule]
 })

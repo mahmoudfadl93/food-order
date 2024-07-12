@@ -22,18 +22,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/menus/menus.component').then((m) => m.MenusComponent),
       },
+
       {
-        path: 'create-menu',
+        path: 'view-menu/:id/:name',
         loadComponent: () =>
-          import('./pages/menu-create-edit/menu-create-edit.component').then(
-            (m) => m.MenuCreateEditComponent
-          ),
-      },
-      {
-        path: 'edit-menu/:id/:name',
-        loadComponent: () =>
-          import('./pages/menu-create-edit/menu-create-edit.component').then(
-            (m) => m.MenuCreateEditComponent
+          import('./pages/view-menu/view-menu.component').then(
+            (m) => m.ViewMenuComponent
           ),
       },
       {
@@ -46,9 +40,7 @@ export const routes: Routes = [
       {
         path: 'order/:id',
         loadComponent: () =>
-          import('./pages/order/order.component').then(
-            (m) => m.OrderComponent
-          ),
+          import('./pages/order/order.component').then((m) => m.OrderComponent),
       },
     ],
   },

@@ -15,9 +15,9 @@ import {
   DynamicDialogModule,
   DynamicDialogRef,
 } from 'primeng/dynamicdialog';
-import { CreateOrderComponent } from '../../components/create-order/create-order.component';
 import { OrdersService } from '../../services/orders/orders.service';
 import { IOrders } from '../../models/orders.model';
+import { DialogCreateOrderComponent } from '../../components/dialog-create-order/dialog-create-order.component';
 
 @Component({
   selector: 'app-orders-history',
@@ -52,7 +52,7 @@ export class OrdersHistoryComponent implements OnInit {
   }
 
   show() {
-    this.ref = this.dialogService.open(CreateOrderComponent, {
+    this.ref = this.dialogService.open(DialogCreateOrderComponent, {
       header: 'Create Order',
       width: '30vw',
       breakpoints: {

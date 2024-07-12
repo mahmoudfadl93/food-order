@@ -6,17 +6,20 @@ import { TableModule } from 'primeng/table';
 import { MenusService } from '../../services/menus/menus.service';
 import { IMenus } from '../../models/menus-data.model';
 import { CommonModule } from '@angular/common';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogCreateMenuComponent } from '../../components/dialog-create-menu/dialog-create-menu.component';
 
 @Component({
   selector: 'app-menus',
   standalone: true,
-  imports: [RouterModule, TableModule, ButtonModule, CardModule, CommonModule],
+  imports: [RouterModule, TableModule, ButtonModule, CardModule, CommonModule,  DynamicDialogModule,],
   templateUrl: './menus.component.html',
   styleUrl: './menus.component.scss',
 })
 export class MenusComponent implements OnInit {
   menusService = inject(MenusService);
-
+   dialogService = inject(DialogService);
+   ref: DynamicDialogRef | undefined;
   menus:WritableSignal<IMenus[]> = signal([]);
   ngOnInit() {
     this.loadData();
@@ -29,4 +32,16 @@ export class MenusComponent implements OnInit {
     });
   }
 
+
+
+  show() {
+    this.ref = this.dialogService.open(DialogCreateMenuComponent, {
+      header: 'Create Menu',
+      width: '50vw',
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw',
+      },
+    });
+  }
 }

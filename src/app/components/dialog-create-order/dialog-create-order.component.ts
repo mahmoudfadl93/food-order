@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
-  selector: 'app-create-order',
+  selector: 'app-dialog-create-order',
   standalone: true,
   imports: [ButtonModule, ReactiveFormsModule, DropdownModule],
-  templateUrl: './create-order.component.html',
-  styleUrl: './create-order.component.scss',
+  templateUrl: './dialog-create-order.component.html',
+  styleUrl: './dialog-create-order.component.scss'
 })
-export class CreateOrderComponent implements OnInit {
+export class DialogCreateOrderComponent {
   form!: FormGroup;
   menus=[]
   ngOnInit(): void {
