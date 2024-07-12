@@ -9,19 +9,21 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 @Injectable()
 export class MenusService {
   private user: IUser = JSON.parse(localStorages().getItem('currentUser'));
-  // loaderService = inject(LoaderService);
+  //  loaderService = inject(LoaderService);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private _LoaderService:LoaderService
+  ) {}
 
   getMenus(): Observable<IMenus[]> {
-    // this.loaderService.show();
+    // this._LoaderService.show();
     return this.http.post<IMenus[]>('api/Menus/GetMenus', {
       userId: this.user.UserId,
     }).pipe(
       finalize(() => {
-        debugger
+
         setTimeout(() => {
-          // this.loaderService.hide();
+          // this._LoaderService.hide();
         }, 100);
       }),
 

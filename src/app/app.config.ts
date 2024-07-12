@@ -10,6 +10,8 @@ import {
 } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LoaderService } from './core/services/loader/loader.service';
+import { MenusService } from './services/menus/menus.service';
+import { OrdersService } from './services/orders/orders.service';
 
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
+    MenusService, OrdersService,
     LoaderService,
     provideHttpClient(withFetch(), withInterceptors([])),
     provideAnimations(),
