@@ -11,14 +11,14 @@ export class AuthService {
   localStoragesData = localStorages();
   loaderService = inject(LoaderService);
   constructor(private http: HttpClient) {}
-  auth(body: ILogin): Observable<{id:string}> {
+  auth(body: ILogin): Observable<{UserId:string}> {
     this.loaderService.show();
 
-    return this.http.post<{id:string}>('api/Authorization', body).pipe(
+    return this.http.post<{UserId:string}>('api/Authorization', body).pipe(
       tap((res) => {
         const user: IUser = {
           ...body,
-          id: res.id,
+          UserId: res.UserId,
         };
         this.localStoragesData.setItem('currentUser', JSON.stringify(user));
       }),

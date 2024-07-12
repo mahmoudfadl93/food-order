@@ -16,7 +16,7 @@ export class OrdersService {
     // this.loaderService.show();
 
     return this.http.post<IOrders[]>('api/Orders', {
-      userId: this.user.id,
+      userId: this.user.UserId,
     }).pipe(
       finalize(() => {
         setTimeout(() => {
@@ -36,7 +36,7 @@ export class OrdersService {
     // this.loaderService.show();
 
     return this.http.post<IItemByUser>('api/Orders/GetOrderItemsByUser', {
-      userId: this.user.id,
+      userId: this.user.UserId,
       orderId: body.id,
     }).pipe(
       finalize(() => {
@@ -57,7 +57,7 @@ export class OrdersService {
     // this.loaderService.show();
 
     return this.http.post<IOrderItems>('api/Orders/GetOrderItems', {
-      userId: this.user.id,
+      userId: this.user.UserId,
       orderId: body.id,
     }).pipe(
       finalize(() => {

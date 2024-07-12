@@ -16,7 +16,7 @@ export class MenusService {
   getMenus(): Observable<IMenus[]> {
     // this.loaderService.show();
     return this.http.post<IMenus[]>('api/Menus/GetMenus', {
-      userId: this.user.id,
+      userId: this.user.UserId,
     }).pipe(
       finalize(() => {
         debugger
