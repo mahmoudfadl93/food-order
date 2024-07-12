@@ -9,14 +9,13 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 @Injectable()
 export class AuthService {
   localStoragesData = localStorages();
-  // loaderService = inject(LoaderService);
+  loaderService = inject(LoaderService);
   constructor(private http: HttpClient) {}
   auth(body: ILogin): Observable<{id:string}> {
-    // this.loaderService.show();
+    this.loaderService.show();
 
     return this.http.post<{id:string}>('api/Authorization', body).pipe(
       tap((res) => {
-        debugger
         const user: IUser = {
           ...body,
           id: res.id,
@@ -25,15 +24,9 @@ export class AuthService {
       }),
       finalize(() => {
         setTimeout(() => {
-          // this.loaderService.hide();
+          this.loaderService.hide();
         }, 100);
       }),
-      catchError((err) => {
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-        throw new Error(err);
-      })
     );
   }
 }
