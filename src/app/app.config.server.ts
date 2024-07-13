@@ -7,8 +7,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
+    provideAnimations(),
     provideHttpClient(withFetch()),
-    provideAnimations()
+
   ]
 };
 

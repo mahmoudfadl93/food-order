@@ -80,7 +80,9 @@
               "buildTarget": "food-order:build:development"
             }
           },
-          "options": {    "proxyConfig": "proxy.conf.json"},
+          "options": {
+             "proxyConfig": "proxy.conf.json"
+            },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
