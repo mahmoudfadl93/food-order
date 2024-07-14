@@ -82,8 +82,8 @@
             }
           },
           "options": {
-             "proxyConfig": "proxy.conf.json"
-            },
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
