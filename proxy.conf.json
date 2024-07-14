@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://yalla-neftar.azurewebsites.net",
+    "target": "https://yalla-neftar.azurewebsites.net/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
