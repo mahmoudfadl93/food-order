@@ -15,22 +15,20 @@ export class AuthService {
   auth(body: ILogin): Observable<{ UserId: string }> {
     this.loaderService.show();
 
-    return this.http
-      .post<{ UserId: string }>(`api/Authorization`, body)
-      .pipe(
-        tap((res) => {
-          const user: IUser = {
-            ...body,
-            UserId: res.UserId,
-          };
-          this.localStoragesData.setItem('currentUser', JSON.stringify(user));
-        }),
-        finalize(() => {
-          setTimeout(() => {
-            this.loaderService.hide();
-          }, 100);
-        })
-      );
+    return this.http.post<{ UserId: string }>(`api/Authorization`, body).pipe(
+      tap((res) => {
+        const user: IUser = {
+          ...body,
+          UserId: res.UserId,
+        };
+        this.localStoragesData.setItem('currentUser', JSON.stringify(user));
+      }),
+      finalize(() => {
+        setTimeout(() => {
+          this.loaderService.hide();
+        }, 100);
+      })
+    );
   }
 
   // testUrl() {
