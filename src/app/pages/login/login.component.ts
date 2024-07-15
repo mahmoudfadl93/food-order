@@ -10,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 
 @Component({
@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private _AuthService: AuthService) {}
+    private _AuthService: AuthService
+  ) {}
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -42,6 +43,24 @@ export class LoginComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
+    this._AuthService.testProxy().subscribe({
+      next: (res) => {
+        console.log(
+          '🚀 ~ LoginComponent ~ this._AuthService.testProxy ~ res:',
+          res
+        );
+        return {};
+      },
+    });
+    this._AuthService.testUrl().subscribe({
+      next: (res) => {
+        console.log(
+          '🚀 ~ LoginComponent ~ this._AuthService.testUrl ~ res:',
+          res
+        );
+        return {};
+      },
+    });
   }
 
   onSubmit() {
@@ -49,7 +68,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) return;
     this._AuthService.auth(this.loginForm.value).subscribe({
       next: (res) => {
-        this.router.navigateByUrl(this.returnUrl)
+        this.router.navigateByUrl(this.returnUrl);
       },
     });
   }

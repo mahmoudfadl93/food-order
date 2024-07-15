@@ -8,25 +8,35 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 
 @Injectable()
 export class AuthService {
-  localStoragesData = localStorages();
-  loaderService = inject(LoaderService);
+  private url: string = 'https://yalla-neftar.azurewebsites.net/';
+  private localStoragesData = localStorages();
+  private loaderService = inject(LoaderService);
   constructor(private http: HttpClient) {}
-  auth(body: ILogin): Observable<{UserId:string}> {
+  auth(body: ILogin): Observable<{ UserId: string }> {
     this.loaderService.show();
 
-    return this.http.post<{UserId:string}>('api/Authorization', body).pipe(
-      tap((res) => {
-        const user: IUser = {
-          ...body,
-          UserId: res.UserId,
-        };
-        this.localStoragesData.setItem('currentUser', JSON.stringify(user));
-      }),
-      finalize(() => {
-        setTimeout(() => {
-          this.loaderService.hide();
-        }, 100);
-      }),
-    );
+    return this.http
+      .post<{ UserId: string }>(`${this.url}Authorization`, body)
+      .pipe(
+        tap((res) => {
+          const user: IUser = {
+            ...body,
+            UserId: res.UserId,
+          };
+          this.localStoragesData.setItem('currentUser', JSON.stringify(user));
+        }),
+        finalize(() => {
+          setTimeout(() => {
+            this.loaderService.hide();
+          }, 100);
+        })
+      );
+  }
+
+  testUrl() {
+    return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
+  }
+  testProxy() {
+    return this.http.get('jsonplaceholder/todos/1');
   }
 }

@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:food-order": "node dist/food-order/server/server.mjs"
+
   },
   "private": true,
   "dependencies": {
