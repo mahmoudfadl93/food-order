@@ -4,8 +4,8 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-const proxy = require('http-proxy-middleware');
 
+import { createProxyMiddleware } from 'http-proxy-middleware';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -13,15 +13,13 @@ export function app(): express.Express {
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
   const commonEngine = new CommonEngine();
-  // Proxy configuration
-  const apiProxy = proxy('/api', {
-    target: 'https://yalla-neftar.azurewebsites.net/',
-    changeOrigin: true,
-    secure: false,
-  });
-
-  // Use the proxy
-  server.use('/api', apiProxy);
+  server.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://yalla-neftar.azurewebsites.net/',
+      changeOrigin: true,
+    })
+  );
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
