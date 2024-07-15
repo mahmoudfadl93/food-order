@@ -16,7 +16,7 @@ export class AuthService {
     this.loaderService.show();
 
     return this.http
-      .post<{ UserId: string }>(`${this.url}Authorization`, body)
+      .post<{ UserId: string }>(`api/Authorization`, body)
       .pipe(
         tap((res) => {
           const user: IUser = {
@@ -33,10 +33,10 @@ export class AuthService {
       );
   }
 
-  testUrl() {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
-  }
-  testProxy() {
-    return this.http.get('jsonplaceholder/todos/1');
-  }
+  // testUrl() {
+  //   return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
+  // }
+  // testProxy() {
+  //   return this.http.get('jsonplaceholder/todos/1');
+  // }
 }
