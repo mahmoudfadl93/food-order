@@ -16,6 +16,8 @@ export function app(): express.Express {
     createProxyMiddleware({
       target: 'https://yalla-neftar.azurewebsites.net/',
       changeOrigin: true,
+      secure:false,
+
 
     })
   );
