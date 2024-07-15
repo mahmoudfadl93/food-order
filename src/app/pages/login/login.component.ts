@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
@@ -22,6 +23,7 @@ import { CardModule } from 'primeng/card';
     ReactiveFormsModule,
     ButtonModule,
     CardModule,
+    CommonModule,
   ],
   providers: [AuthService],
   templateUrl: './login.component.html',
@@ -43,15 +45,7 @@ export class LoginComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-    this._AuthService.testProxy().subscribe({
-      next: (res) => {
-        console.log(
-          '🚀 ~ LoginComponent ~ this._AuthService.testProxy ~ res:',
-          res
-        );
-        return {};
-      },
-    });
+
   }
 
   onSubmit() {

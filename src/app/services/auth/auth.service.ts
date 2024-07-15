@@ -32,7 +32,5 @@ export class AuthService {
   }
 
 
-  testProxy() {
-    return this.http.get('jsonplaceholder/todos/1');
-  }
+
 }
