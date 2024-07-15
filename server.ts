@@ -24,6 +24,18 @@ export function app(): express.Express {
       },
     })
   );
+  server.use(
+    '/jsonplaceholder',
+    createProxyMiddleware({
+      target: 'https://jsonplaceholder.typicode.com/',
+      secure: false,
+      logger: true,
+      changeOrigin: true,
+      pathRewrite: {
+        '^/jsonplaceholder': '',
+      },
+    })
+  );
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 

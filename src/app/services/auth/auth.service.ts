@@ -31,10 +31,8 @@ export class AuthService {
     );
   }
 
-  // testUrl() {
-  //   return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
-  // }
-  // testProxy() {
-  //   return this.http.get('jsonplaceholder/todos/1');
-  // }
+
+  testProxy() {
+    return this.http.get('jsonplaceholder/todos/1');
+  }
 }

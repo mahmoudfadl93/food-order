@@ -43,24 +43,15 @@ export class LoginComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-    // this._AuthService.testProxy().subscribe({
-    //   next: (res) => {
-    //     console.log(
-    //       '🚀 ~ LoginComponent ~ this._AuthService.testProxy ~ res:',
-    //       res
-    //     );
-    //     return {};
-    //   },
-    // });
-    // this._AuthService.testUrl().subscribe({
-    //   next: (res) => {
-    //     console.log(
-    //       '🚀 ~ LoginComponent ~ this._AuthService.testUrl ~ res:',
-    //       res
-    //     );
-    //     return {};
-    //   },
-    // });
+    this._AuthService.testProxy().subscribe({
+      next: (res) => {
+        console.log(
+          '🚀 ~ LoginComponent ~ this._AuthService.testProxy ~ res:',
+          res
+        );
+        return {};
+      },
+    });
   }
 
   onSubmit() {
