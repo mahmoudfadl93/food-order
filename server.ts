@@ -5,14 +5,6 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
 const proxy = require('http-proxy-middleware');
-// Proxy configuration
-const apiProxy = proxy('/api', {
-  target: 'https://yalla-neftar.azurewebsites.net/',
-  changeOrigin: true,
-  secure: false
-});
-
-
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -23,15 +15,25 @@ export function app(): express.Express {
   const commonEngine = new CommonEngine();
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
+  // Proxy configuration
+  const apiProxy = proxy('/api', {
+    target: 'https://yalla-neftar.azurewebsites.net/',
+    changeOrigin: true,
+    secure: false,
+  });
+
   // Use the proxy
-  server.use('/api', apiProxy)
+  server.use('/api', apiProxy);
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('**', express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: 'index.html',
-  }));
+  server.get(
+    '**',
+    express.static(browserDistFolder, {
+      maxAge: '1y',
+      index: 'index.html',
+    })
+  );
 
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
@@ -61,6 +63,5 @@ function run(): void {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
-
 
 run();
