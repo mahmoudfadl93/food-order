@@ -11,21 +11,7 @@ export function app(): express.Express {
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
-  server.use(
-    '/api',
-    createProxyMiddleware({
-      target: 'https://yalla-neftar.azurewebsites.net/',
-      changeOrigin: true,
 
-    })
-  );
-  server.use(
-    '/jsonplaceholder',
-    createProxyMiddleware({
-      target: 'https://jsonplaceholder.typicode.com/',
-      changeOrigin: true,
-    })
-  );
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
@@ -66,6 +52,20 @@ function run(): void {
 
   // Start up the Node server
   const server = app();
+  server.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://yalla-neftar.azurewebsites.net/',
+      changeOrigin: true,
+    })
+  );
+  server.use(
+    '/jsonplaceholder',
+    createProxyMiddleware({
+      target: 'https://jsonplaceholder.typicode.com/',
+      changeOrigin: true,
+    })
+  );
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
