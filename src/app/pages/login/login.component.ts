@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _AuthService: AuthService
   ) {}
-
+  todosProxy!: any;
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.loginForm = new FormGroup({
@@ -45,6 +45,11 @@ export class LoginComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
+    this._AuthService.testProxy().subscribe({
+      next:(res)=>{
+           this.todosProxy = res
+      }
+    })
 
   }
 

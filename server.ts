@@ -16,11 +16,14 @@ export function app(): express.Express {
     createProxyMiddleware({
       target: 'https://yalla-neftar.azurewebsites.net/',
       changeOrigin: true,
-      secure: true,
 
-      pathRewrite: {
-        '^/api': '',
-      },
+    })
+  );
+  server.use(
+    '/jsonplaceholder',
+    createProxyMiddleware({
+      target: 'https://jsonplaceholder.typicode.com/',
+      changeOrigin: true,
     })
   );
   const commonEngine = new CommonEngine();
