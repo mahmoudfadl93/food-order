@@ -15,7 +15,7 @@ export class OrdersService {
   getOrdersList(): Observable<IOrders[]> {
     // this.loaderService.show();
 
-    return this.http.post<IOrders[]>('api/Orders', {
+    return this.http.post<IOrders[]>('/api/Orders', {
       userId: this.user.UserId,
     }).pipe(
       finalize(() => {
@@ -35,7 +35,7 @@ export class OrdersService {
   GetOrderItemsByUser(body: { id: number }): Observable<IItemByUser> {
     // this.loaderService.show();
 
-    return this.http.post<IItemByUser>('api/Orders/GetOrderItemsByUser', {
+    return this.http.post<IItemByUser>('/api/Orders/GetOrderItemsByUser', {
       userId: this.user.UserId,
       orderId: body.id,
     }).pipe(
@@ -56,7 +56,7 @@ export class OrdersService {
   GetOrderItems(body: { id: number }): Observable<IOrderItems> {
     // this.loaderService.show();
 
-    return this.http.post<IOrderItems>('api/Orders/GetOrderItems', {
+    return this.http.post<IOrderItems>('/api/Orders/GetOrderItems', {
       userId: this.user.UserId,
       orderId: body.id,
     }).pipe(

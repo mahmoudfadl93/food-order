@@ -16,8 +16,9 @@ export class MenusService {
   ) {}
 
   getMenus(): Observable<IMenus[]> {
+
     // this._LoaderService.show();
-    return this.http.post<IMenus[]>('api/Menus/GetMenus', {
+    return this.http.post<IMenus[]>('/api/Menus/GetMenus', {
       userId: this.user.UserId,
     }).pipe(
       finalize(() => {
@@ -32,7 +33,7 @@ export class MenusService {
 
   getMenuDetails(body: { id: number }): Observable<any> {
     // this.loaderService.show();
-    return this.http.post<any>('api/Menus/GetMenuItems', {
+    return this.http.post<any>('/api/Menus/GetMenuItems', {
       menuId: body.id,
     }).pipe(
       finalize(() => {

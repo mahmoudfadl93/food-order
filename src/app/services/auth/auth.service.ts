@@ -5,7 +5,6 @@ import { localStorages } from '../../core/helper/localStorage.fun';
 import { ILogin } from '../../models/login.model';
 import { IUser } from '../../models/user.model';
 import { LoaderService } from '../../core/services/loader/loader.service';
-import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +14,7 @@ export class AuthService {
   auth(body: ILogin): Observable<{ UserId: string }> {
     this.loaderService.show();
 
-    return this.http.post<{ UserId: string }>(`https://yalla-neftar.azurewebsites.net/Authorization`, body).pipe(
+    return this.http.post<{ UserId: string }>(`/api/Authorization`, body).pipe(
       tap((res) => {
         const user: IUser = {
           ...body,
@@ -31,10 +30,7 @@ export class AuthService {
     );
   }
 
-  testProxy(){
-    return this.http.get(`jsonplaceholder/todos/1`)
+  testProxy() {
+    return this.http.get(`jsonplaceholder/todos/1`);
   }
-
-
-
 }
