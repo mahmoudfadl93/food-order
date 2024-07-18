@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://yalla-neftar.azurewebsites.net/:path*"
+    },
+    {
+      "source": "/jsonplaceholder/:path*",
+      "destination": "https://jsonplaceholder.typicode.com/:path*"
+    }
+  ]
+}
