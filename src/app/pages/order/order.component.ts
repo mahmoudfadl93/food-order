@@ -39,12 +39,8 @@ import { MenusService } from '../../services/menus/menus.service';
   styleUrl: './order.component.scss',
 })
 export class OrderComponent implements OnInit {
-  router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
-  ordersService = inject(OrdersService);
-  menusService = inject(MenusService);
   id!: number;
-  itemByuser: WritableSignal<IItemByUser> = signal(null!);
+  itemByUser: WritableSignal<IItemByUser> = signal(null!);
   orderItems: WritableSignal<IOrderItems> = signal(null!);
   calcTotalOrders: WritableSignal<any> = signal([]);
   menuItems: WritableSignal<any> = signal(null!);
@@ -58,6 +54,13 @@ export class OrderComponent implements OnInit {
     },
   ];
   subscription = new Subscriptions();
+
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private ordersService: OrdersService,
+    private menusService: MenusService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -80,7 +83,7 @@ export class OrderComponent implements OnInit {
       GetOrderItems: this.ordersService.GetOrderItems({ id: this.id }),
     }).subscribe({
       next: ({ GetOrderItemsByUser, GetOrderItems }) => {
-        this.itemByuser.set(GetOrderItemsByUser);
+        this.itemByUser.set(GetOrderItemsByUser);
         this.orderItems.set(GetOrderItems);
         this.totalOrders();
       },

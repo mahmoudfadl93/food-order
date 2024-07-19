@@ -9,44 +9,40 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 @Injectable()
 export class MenusService {
   private user: IUser = JSON.parse(localStorages().getItem('currentUser'));
-  //  loaderService = inject(LoaderService);
 
-  constructor(private http: HttpClient,
-    private _LoaderService:LoaderService
+  constructor(
+    private http: HttpClient,
+    private _LoaderService: LoaderService
   ) {}
 
   getMenus(): Observable<IMenus[]> {
-
-    // this._LoaderService.show();
-    return this.http.post<IMenus[]>('/api/Menus/GetMenus', {
-      userId: this.user.UserId,
-    }).pipe(
-      finalize(() => {
-
-        setTimeout(() => {
-          // this._LoaderService.hide();
-        }, 100);
-      }),
-
-    )
+    this._LoaderService.show();
+    return this.http
+      .post<IMenus[]>('/api/Menus/GetMenus', {
+        userId: this.user.UserId,
+      })
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 100);
+        })
+      );
   }
 
   getMenuDetails(body: { id: number }): Observable<any> {
-    // this.loaderService.show();
-    return this.http.post<any>('/api/Menus/GetMenuItems', {
-      menuId: body.id,
-    }).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-      }),
-      catchError((err)=>{
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-        throw new Error(err)
+     this._LoaderService.show();
+    return this.http
+      .post<any>('/api/Menus/GetMenuItems', {
+        menuId: body.id,
       })
-    )
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+             this._LoaderService.hide();
+          }, 100);
+        }),
+
+      );
   }
 }

@@ -12,14 +12,16 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { LoaderService } from './core/services/loader/loader.service';
 import { MenusService } from './services/menus/menus.service';
 import { OrdersService } from './services/orders/orders.service';
-
+import { DialogService } from 'primeng/dynamicdialog';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    MenusService, OrdersService,
+    DialogService,
     LoaderService,
+     MenusService,
+    OrdersService,
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([])),
     provideAnimations(),
