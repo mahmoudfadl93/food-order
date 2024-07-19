@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && copyfiles --flat src/netlify.toml dist && copyfiles --flat src/netlify.toml dist/food-order && copyfiles --flat src/netlify.toml dist/food-order/browser && copyfiles --flat src/vercel.json dist && copyfiles --flat src/vercel.json dist/food-order && copyfiles --flat src/vercel.json dist/food-order/browser",
+    "build": "ng build ",
+    "allPlatformBuild": "ng build && copyfiles --flat src/netlify.toml dist && copyfiles --flat src/netlify.toml dist/food-order && copyfiles --flat src/netlify.toml dist/food-order/browser && copyfiles --flat src/vercel.json dist && copyfiles --flat src/vercel.json dist/food-order && copyfiles --flat src/vercel.json dist/food-order/browser",
+    "vercelBuild": "ng build && copyfiles --flat src/vercel.json dist && copyfiles --flat src/vercel.json dist/food-order && copyfiles --flat src/vercel.json dist/food-order/browser",
+    "netlifyBuild": "ng build && copyfiles --flat src/netlify.toml dist && copyfiles --flat src/netlify.toml dist/food-order && copyfiles --flat src/netlify.toml dist/food-order/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:food-order": "node dist/food-order/server/server.mjs"
