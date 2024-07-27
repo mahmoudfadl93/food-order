@@ -11,8 +11,9 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+
 import { CoreModule } from './core/core.module';
-import { DialogService } from 'primeng/dynamicdialog';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { Observable } from 'rxjs';
 import { LoaderService } from './core/services/loader/loader.service';
@@ -20,8 +21,9 @@ import { LoaderService } from './core/services/loader/loader.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CoreModule, RouterOutlet, LoaderComponent],
-  providers: [DialogService,],
+
+  imports: [CoreModule, RouterOutlet, LoaderComponent,ToastModule],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

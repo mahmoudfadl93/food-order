@@ -1,6 +1,6 @@
-<div class="login">
-  <p-card>
-    <div class="login__container">
+<p-card>
+  <div class="form-block mx-auto">
+    <div class="text-center mb-5">
       <div class="login__container-image">
         <img
           width="150"
@@ -10,56 +10,62 @@
           class="avatar"
         />
       </div>
-
-      <div class="login__container-form">
-        <form [formGroup]="loginForm">
-          <div class="input-control display-column">
-            <div class="input-control__label">
-              <label for="email">Email</label>
-            </div>
-            <div class="input-control__wrapper">
-              <input
-                id="email"
-                type="email"
-                pInputText
-                formControlName="email"
-              />
-            </div>
-            <div class="input-control__errors"></div>
-          </div>
-          <div class="input-control display-column">
-            <div class="input-control__label">
-              <label for="phone">Phone</label>
-            </div>
-            <div class="input-control__wrapper">
-              <input
-                id="phone"
-                type="text"
-                pInputText
-                formControlName="phone"
-              />
-            </div>
-            <div class="input-control__errors"></div>
-          </div>
-          <div class="input-control display-column">
-            <div class="input-control__label">
-              <label for="password">Password</label>
-            </div>
-            <div class="input-control__wrapper">
-              <p-password
-                id="password"
-                formControlName="password"
-                [feedback]="false"
-                [toggleMask]="true"
-              />
-            </div>
-            <div class="input-control__errors"></div>
-          </div>
-        </form>
-      </div>
-      <div class="login__container-footer">
-        <p-button (onClick)="onSubmit()" [type]="'submit'" label="Signin Or Signup" />
-      </div>
     </div>
-  </p-card>
-</div>
+    <form [formGroup]="loginForm">
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-control__wrapper">
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+          />
+        </div>
+        <div class="input-control__errors">
+          <error-message [ctrl]="formControl('email')"></error-message>
+        </div>
+      </div>
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="phone">Phone</label>
+        </div>
+        <div class="input-control__wrapper">
+          <input
+            id="phone"
+            type="text"
+            pInputText
+            formControlName="phone"
+          />
+        </div>
+        <div class="input-control__errors">
+          <error-message [ctrl]="formControl('phone')"></error-message>
+        </div>
+      </div>
+      <div class="input-control display-column">
+        <div class="input-control__label">
+          <label for="password">Password</label>
+        </div>
+        <div class="input-control__wrapper">
+          <p-password
+            id="password"
+            formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true"
+          />
+        </div>
+        <div class="input-control__errors"></div>
+        <error-message [ctrl]="formControl('password')"></error-message>
+      </div>
+    </form>
+    <div class="login__container-footer">
+      <p-button
+        (onClick)="onSubmit()"
+        [type]="'submit'"
+        label="Signin Or Signup"
+      />
+    </div>
+  </div>
+</p-card>

@@ -9,68 +9,58 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 @Injectable()
 export class OrdersService {
   private user: IUser = JSON.parse(localStorages().getItem('currentUser'));
-  // loaderService = inject(LoaderService);
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private _LoaderService: LoaderService
+  ) {}
 
   getOrdersList(): Observable<IOrders[]> {
-    // this.loaderService.show();
+    this._LoaderService.show();
 
-    return this.http.post<IOrders[]>('/api/Orders', {
-      userId: this.user.UserId,
-    }).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-      }),
-      catchError((err)=>{
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-        throw new Error(err)
+    return this.http
+      .post<IOrders[]>('/api/Orders', {
+        userId: this.user.UserId,
       })
-    )
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 100);
+        })
+      );
   }
 
   GetOrderItemsByUser(body: { id: number }): Observable<IItemByUser> {
-    // this.loaderService.show();
+    this._LoaderService.show();
 
-    return this.http.post<IItemByUser>('/api/Orders/GetOrderItemsByUser', {
-      userId: this.user.UserId,
-      orderId: body.id,
-    }).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-      }),
-      catchError((err)=>{
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-        throw new Error(err)
+    return this.http
+      .post<IItemByUser>('/api/Orders/GetOrderItemsByUser', {
+        userId: this.user.UserId,
+        orderId: body.id,
       })
-    )
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 100);
+        })
+      );
   }
 
   GetOrderItems(body: { id: number }): Observable<IOrderItems> {
-    // this.loaderService.show();
+    this._LoaderService.show();
 
-    return this.http.post<IOrderItems>('/api/Orders/GetOrderItems', {
-      userId: this.user.UserId,
-      orderId: body.id,
-    }).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-      }),
-      catchError((err)=>{
-        setTimeout(() => {
-          // this.loaderService.hide();
-        }, 100);
-        throw new Error(err)
+    return this.http
+      .post<IOrderItems>('/api/Orders/GetOrderItems', {
+        userId: this.user.UserId,
+        orderId: body.id,
       })
-    )
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 100);
+        })
+      );
   }
 }

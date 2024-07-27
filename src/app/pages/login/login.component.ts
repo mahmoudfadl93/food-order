@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { CardModule } from 'primeng/card';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 
 import {
   FormControl,
@@ -11,8 +15,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CardModule } from 'primeng/card';
+import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +28,8 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     CardModule,
     CommonModule,
+    MessagesModule,
+    ErrorMessageComponent,
   ],
   providers: [AuthService],
   templateUrl: './login.component.html',
@@ -35,6 +41,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private messageService: MessageService,
     private _AuthService: AuthService
   ) {}
   ngOnInit() {
@@ -44,16 +51,31 @@ export class LoginComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-
   }
 
   onSubmit() {
     // Handle form submission here
     if (this.loginForm.invalid) return;
+    const email: string = this.formControl('email').value;
+    if (
+      !email.toLowerCase().includes('EFG-Hermes.com') ||
+      !email.toLowerCase().includes('efghldg.com')
+    ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Email should be your work mail',
+      });
+      // return;
+    }
     this._AuthService.auth(this.loginForm.value).subscribe({
       next: (res) => {
         this.router.navigateByUrl(this.returnUrl);
       },
     });
+  }
+
+  formControl(name: string) {
+    return this.loginForm.get(name) as FormControl;
   }
 }

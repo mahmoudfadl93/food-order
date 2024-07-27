@@ -37,3 +37,15 @@
   background: #ef4444;
   border: 1px solid #ef4444;
 }
+
+.p-button.p-button-info, .p-button-group.p-button-info > .p-button, .p-splitbutton.p-button-info > .p-button {
+  color: #ffffff;
+  background: #0ea5e9;
+  border: 1px solid #0ea5e9;
+}
+
+.p-button.p-button-info:not(:disabled):hover, .p-button-group.p-button-info > .p-button:not(:disabled):hover, .p-splitbutton.p-button-info > .p-button:not(:disabled):hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}

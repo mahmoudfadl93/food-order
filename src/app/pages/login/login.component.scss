@@ -1,19 +1,31 @@
-
 @import 'variables/color';
+
 .login {
-  width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $grey-300;
+  min-height: 700px;
+  &__background {
+    background-image: url('./../../../../public/image/login-background.jpg');
+    width: 25%;
+    background-size: cover;
+    background-position: center;
+  }
+
 
   &__container {
     // background-color: #fff;
     // border-radius: 10px;
     // padding: 1rem;
     // box-shadow: 1px 1px 1px #333;
-    width: 35rem;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $grey-300;
+
+    p-card {
+      width: 35rem;
+      display: inline-block;
+    }
 
     &-image {
       display: flex;
@@ -28,8 +40,8 @@
     }
 
     &-form {
-      .input-control{
-        &:not(:last-child){
+      .input-control {
+        &:not(:last-child) {
           margin-block-end: 1.5rem;
         }
       }
@@ -41,5 +53,16 @@
       align-items: center;
       justify-content: center;
     }
+  }
+}
+
+.page-login{
+  height: 100vh;
+  min-height: 700px;
+  &__bg{
+    background-image: url('./../../../../public/image/login-background.jpg');
+    width: 25%;
+    background-size: cover;
+    background-position: center;
   }
 }

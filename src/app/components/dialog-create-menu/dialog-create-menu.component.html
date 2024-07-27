@@ -16,7 +16,9 @@
       <div class="input-control__errors"></div>
     </div>
   </div>
-  <div class="add-items my-3 d-flex align-items-center justify-content-end ">
+
+  <div class="add-items my-3 d-flex align-items-center justify-content-between">
+    <p>Menu Items</p>
     <p-button (onClick)="addItem()" [type]="'button'" label="Add Item" />
   </div>
 
@@ -60,7 +62,7 @@
     }
   </ng-container>
   <div class="mt-5 d-flex align-items-center justify-content-between">
-    <p-button  label="Back" severity="secondary" [outlined]="true"  />
+    <p-button label="Back" severity="secondary" [outlined]="true" />
     <p-button (onClick)="onSubmit()" [type]="'submit'" label="Submit" />
   </div>
 </form>

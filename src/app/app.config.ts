@@ -13,15 +13,18 @@ import { LoaderService } from './core/services/loader/loader.service';
 import { MenusService } from './services/menus/menus.service';
 import { OrdersService } from './services/orders/orders.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     DialogService,
+    MessageService,
     LoaderService,
      MenusService,
     OrdersService,
+
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([])),
     provideAnimations(),

@@ -44,10 +44,21 @@ export const routes: Routes = [
       },
     ],
   },
-
   {
-    path: 'auth',
+    path:'',
+
     loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
-  },
+      import('./layout/content-layout/content-layout.component').then(
+        (m) => m.ContentLayoutComponent
+      ),
+      children:[
+
+        {
+          path: 'auth',
+          loadComponent: () =>
+            import('./pages/login/login.component').then((m) => m.LoginComponent),
+        },
+      ]
+  }
+
 ];

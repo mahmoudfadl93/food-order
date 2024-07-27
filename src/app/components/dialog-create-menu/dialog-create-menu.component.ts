@@ -40,7 +40,6 @@ export class DialogCreateMenuComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       items: new FormArray([]),
     });
-    this.addItem();
   }
 
   addItem() {

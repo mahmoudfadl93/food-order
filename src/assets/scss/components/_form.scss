@@ -1,9 +1,7 @@
 .input-control {
   width: 100%;
- padding-inline: 1rem;
-  &__label {}
-
-  &__wrapper {}
+  padding-inline: 1rem;
+  padding-block: 1rem;
 
   &.display {
     &-row {
@@ -18,43 +16,89 @@
     }
   }
 
-  p-password {
-    width: 100%;
-    display: inline-block;
+  &__label {}
 
-    .p-password {
+  &__wrapper {
+    p-password {
       width: 100%;
       display: inline-block;
+
+      .p-password {
+        width: 100%;
+        display: inline-block;
+      }
     }
-  }
-  p-inputnumber{
-    width: 100%;
-    display: inline-block;
-    .p-inputnumber{
+
+    p-inputnumber {
       width: 100%;
       display: inline-block;
+
+      .p-inputnumber {
+        width: 100%;
+        display: inline-block;
+      }
     }
-  }
-  p-dropdown{
-    width: 100%;
-    display: inline-block;
-    .p-dropdown{
+
+    p-dropdown {
       width: 100%;
+      display: inline-block;
 
+      .p-dropdown {
+        width: 100%;
+
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      display: inline-block;
+      padding-inline: .5rem;
+      font-size: 1em;
+      border-radius: 10px;
+      border: 1px solid #33333338;
+      background-color: transparent !important;
+
+      &:focus-visible {
+        outline: -webkit-focus-ring-color auto 0px;
+        background-color: transparent !important;
+        border: 1px solid #33333338;
+      }
     }
   }
 
-  input {
-    width: 100%;
-    height: 50px;
-    display: inline-block;
-    padding-inline: .5rem;
-    font-size: 1em;
-    border-radius: 10px;
-    border-color: rgb(51 51 51 / 50%);
-    &:focus-visible {
-      outline: -webkit-focus-ring-color auto 0px;
-  }
-  }
+  &__errors {}
 
+
+
+
+}
+
+input {
+  background-color: transparent !important;
+}
+
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  background-color: transparent !important;
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+  border: 1px solid #33333338;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  border: 1px solid #33333338;
+}
+
+
+.p-input-icon-left>i,
+.p-input-icon-left>.p-icon-wrapper,
+.p-input-icon-right>i,
+.p-input-icon-right>.p-icon-wrapper {
+  transform: translateY(-50%);
 }

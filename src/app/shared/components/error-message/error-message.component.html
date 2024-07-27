@@ -1,0 +1,5 @@
+@if (shouldShowErrors()) { @for (item of listOfErrors; track item) {
+  <span class="error-msg">
+    {{ item.detail }}
+  </span>
+  } }
