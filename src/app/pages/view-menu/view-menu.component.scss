@@ -1,0 +1,13 @@
+.active{
+  background-color: green ;
+  padding: 1rem;
+  color: #fff;
+  border-radius: 10px;
+}
+.menu-view{
+  &__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

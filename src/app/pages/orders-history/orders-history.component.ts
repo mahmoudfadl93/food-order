@@ -38,9 +38,11 @@ export class OrdersHistoryComponent implements OnInit {
   ordersService = inject(OrdersService);
   ref: DynamicDialogRef | undefined;
   orders: WritableSignal<IOrders[]> = signal([]);
-
-  ngOnInit(): void {
+  constructor(){
     this.loadData();
+  }
+  ngOnInit(): void {
+
   }
 
   loadData() {

@@ -36,8 +36,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {}
   ngOnInit() {
     this.primengConfig.ripple = true;
+    this.cdref.detectChanges();
   }
   ngAfterViewInit(): void {
-    this.cdref.detectChanges();
+     this.cdref.detectChanges();
   }
 }

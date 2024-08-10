@@ -7,6 +7,7 @@ import { IUser } from '../../models/user.model';
 import { LoaderService } from '../../core/services/loader/loader.service';
 import { IAddMenu } from '../../models/addMenu.model';
 import { IAddMenuItem } from '../../models/addMenuItems.model';
+import { IMenuDetails } from '../../models/menu-details.model';
 
 @Injectable()
 export class MenusService {
@@ -27,45 +28,57 @@ export class MenusService {
         finalize(() => {
           setTimeout(() => {
             this._LoaderService.hide();
-          }, 100);
+          }, 500);
         })
       );
   }
 
-  getMenuDetails(body: { id: number }): Observable<any> {
+  getMenuDetails(body: { id: number }): Observable<IMenuDetails> {
     this._LoaderService.show();
     return this.http
       .post<any>('/api/Menus/GetMenuItems', {
         menuId: body.id,
+        userId: this.user.UserId,
+        active: true,
       })
       .pipe(
         finalize(() => {
           setTimeout(() => {
             this._LoaderService.hide();
-          }, 100);
+          }, 500);
         })
       );
   }
 
   AddMenu(body: IAddMenu): Observable<number> {
     this._LoaderService.show();
-    return this.http.post<number>('/api/Menus/AddMenu', body).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          this._LoaderService.hide();
-        }, 100);
+    return this.http
+      .post<number>('/api/Menus/AddMenu', {
+        ...body,
+        userId: this.user.UserId,
       })
-    );
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 500);
+        })
+      );
   }
 
   AddMenuItem(body: IAddMenuItem): Observable<number> {
     this._LoaderService.show();
-    return this.http.post<number>('/api/Menus/AddMenuItem', body).pipe(
-      finalize(() => {
-        setTimeout(() => {
-          this._LoaderService.hide();
-        }, 100);
+    return this.http
+      .post<number>('/api/Menus/AddMenuItem', {
+        ...body,
+        userId: this.user.UserId,
       })
-    );
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this._LoaderService.hide();
+          }, 500);
+        })
+      );
   }
 }

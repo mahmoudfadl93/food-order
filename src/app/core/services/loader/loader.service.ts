@@ -6,15 +6,17 @@ export class LoaderService {
   private showLoadingSubject = new BehaviorSubject<boolean>(false);
   public showLoading$: Observable<boolean> =
     this.showLoadingSubject.asObservable();
-  constructor() {
-    this.hide();
-  }
+  constructor() {}
 
   show() {
-    this.showLoadingSubject.next(true);
+    if (this.showLoadingSubject.value === false) {
+      this.showLoadingSubject.next(true);
+    }
   }
 
   hide() {
-    this.showLoadingSubject.next(false);
+    if (this.showLoadingSubject.value === true) {
+      this.showLoadingSubject.next(false);
+    }
   }
 }

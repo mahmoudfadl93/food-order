@@ -24,7 +24,7 @@ export const routes: Routes = [
       },
 
       {
-        path: 'view-menu/:id/:name',
+        path: 'view-menu/:id',
         loadComponent: () =>
           import('./pages/view-menu/view-menu.component').then(
             (m) => m.ViewMenuComponent

@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { ItemsList } from '../../models/addMenuItems.model';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-dialog-create-menu',
@@ -24,7 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     InputNumberModule,
   ],
-  providers:[MenusService],
+  providers: [],
   templateUrl: './dialog-create-menu.component.html',
   styleUrl: './dialog-create-menu.component.scss',
 })
@@ -34,12 +36,21 @@ export class DialogCreateMenuComponent implements OnInit {
   id!: number;
   name!: string;
   form!: FormGroup;
+  constructor(
+    public config: DynamicDialogConfig<any>,
+    public ref: DynamicDialogRef
+  ) {}
   ngOnInit(): void {
     this.form = new FormGroup({
       id: new FormControl(0, [Validators.required]),
       name: new FormControl('', [Validators.required]),
       items: new FormArray([]),
     });
+
+    this.id = this.config.data.menuId;
+    this.name = this.config.data.menuName;
+    this.formControl('id').setValue(this.id);
+    this.formControl('name').setValue(this.name);
   }
 
   addItem() {
@@ -54,7 +65,61 @@ export class DialogCreateMenuComponent implements OnInit {
     this.items.push(item);
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (!this.id) {
+      this.menusService
+        .AddMenu({
+          name: this.formControl('name').value,
+        })
+        .subscribe({
+          next: (res) => {
+            const items: [] = this.formControl('items').value;
+            if (items.length) {
+              const data = items.map((item: ItemsList) => {
+                return {
+                  ...item,
+                  menuId: res,
+                };
+              });
+              this.menusService.AddMenuItem({ itemsList: data }).subscribe({
+                next: (_) => {
+                  if (this.ref) {
+                    this.ref.close({
+                      isSave:true
+                    });
+                  }
+                },
+              });
+            } else {
+              if (this.ref) {
+                this.ref.close({
+                  isSave:true
+                });
+              }
+            }
+          },
+        });
+    } else {
+      const items: [] = this.formControl('items').value;
+      if (items.length) {
+        const data = items.map((item: ItemsList) => {
+          return {
+            ...item,
+            menuId: this.id,
+          };
+        });
+        this.menusService.AddMenuItem({ itemsList: data }).subscribe({
+          next: (_) => {
+            if (this.ref) {
+              this.ref.close({
+                isSave:true
+              });
+            }
+          },
+        });
+      }
+    }
+  }
 
   // Helper method to get the 'items' FormArray
   get items() {

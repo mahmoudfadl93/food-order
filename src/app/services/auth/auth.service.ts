@@ -25,7 +25,7 @@ export class AuthService {
       finalize(() => {
         setTimeout(() => {
           this.loaderService.hide();
-        }, 100);
+        }, 500);
       })
     );
   }

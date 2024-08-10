@@ -62,7 +62,7 @@
     }
   </ng-container>
   <div class="mt-5 d-flex align-items-center justify-content-between">
-    <p-button label="Back" severity="secondary" [outlined]="true" />
+    <p-button label="Back" severity="secondary" [outlined]="true"  (onClick)="ref?.close()"/>
     <p-button (onClick)="onSubmit()" [type]="'submit'" label="Submit" />
   </div>
 </form>

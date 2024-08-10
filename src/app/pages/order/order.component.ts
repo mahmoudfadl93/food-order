@@ -60,19 +60,22 @@ export class OrderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ordersService: OrdersService,
     private menusService: MenusService
-  ) {}
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      items: new FormArray([]),
-    });
-    this.addItem();
+  ) {
     this.subscription.add = this.activatedRoute.params.subscribe((param) => {
       this.id = +param['id'];
       if (this.id) {
         this.loadData();
       }
     });
+  }
+
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      items: new FormArray([]),
+    });
+    this.addItem();
+
   }
 
   loadData() {

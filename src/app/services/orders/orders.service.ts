@@ -25,7 +25,7 @@ export class OrdersService {
         finalize(() => {
           setTimeout(() => {
             this._LoaderService.hide();
-          }, 100);
+          }, 500);
         })
       );
   }
@@ -42,7 +42,7 @@ export class OrdersService {
         finalize(() => {
           setTimeout(() => {
             this._LoaderService.hide();
-          }, 100);
+          }, 500);
         })
       );
   }
@@ -59,7 +59,7 @@ export class OrdersService {
         finalize(() => {
           setTimeout(() => {
             this._LoaderService.hide();
-          }, 100);
+          }, 500);
         })
       );
   }

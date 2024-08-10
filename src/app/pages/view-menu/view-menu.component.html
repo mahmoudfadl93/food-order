@@ -1,1 +1,50 @@
-<p>view-menu works!</p>
+
+@if (menus()) {<div class="menu-view">
+  <div class="menu-view__header">
+    <h2>
+      {{ menus().Name }}
+    </h2>
+    <div class="menu-view__header-action">
+      <p-button (onClick)="show()"  [type]="'button'" label="Add Item" />
+    </div>
+  </div>
+  <div class="menu-view__body">
+    <p-card>
+      <p-table [value]="menus().Items" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>price</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-menu>
+          <tr>
+            <td>{{ menu.name }}</td>
+            <td>{{ menu.price }}</td>
+            <td>{{ menu.timestamp | date }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  active: menu.active === 1,
+                  inActive: menu.active === 2
+                }"
+              >
+              @if (menu.active === 1) {
+                Active
+              }
+              @else {
+                inActive
+              }
+
+              </span>
+            </td>
+            <td></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
+}
